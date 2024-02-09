@@ -1,0 +1,35 @@
+version: '3.7'
+
+services:
+  gateway:
+    container_name: gateway
+    build:
+      context: ../kiosk-gateway
+    ports:
+      - "8080:8080"
+    networks:
+      - kiosk-network
+    depends_on:
+      - user-service
+  user-service:
+    container_name: user-service
+    build:
+      context: ../kiosk-user-service
+    ports:
+      - "8081:8080"
+    networks:
+      - kiosk-network
+    depends_on:
+      - database
+  database:
+    container_name: database
+    image: postgres:15.4-alpine3.18
+    environment:
+      POSTGRES_USER: october03
+      POSTGRES_PASSWORD: 1q2w3e4r!@
+    volumes:
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+    networks:
+      - kiosk-network
+networks:
+  kiosk-network:

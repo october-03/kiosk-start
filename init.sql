@@ -1,0 +1,5 @@
+CREATE DATABASE customer;
+CREATE DATABASE coupon;
+CREATE DATABASE payment;
+CREATE DATABASE administrator;
+CREATE DATABASE product;
