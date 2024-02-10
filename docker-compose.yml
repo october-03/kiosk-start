@@ -21,6 +21,46 @@ services:
       - kiosk-network
     depends_on:
       - database
+  coupon-service:
+    container_name: coupon-service
+    build:
+      context: ../kiosk-coupon-service
+    ports:
+      - "8082:8080"
+    networks:
+      - kiosk-network
+    depends_on:
+      - database
+  admin-service:
+    container_name: admin-service
+    build:
+      context: ../kiosk-admin-service
+    ports:
+      - "8083:8080"
+    networks:
+      - kiosk-network
+    depends_on:
+      - database
+  payment-service:
+    container_name: payment-service
+    build:
+      context: ../kiosk-payment-service
+    ports:
+      - "8084:8080"
+    networks:
+      - kiosk-network
+    depends_on:
+      - database
+  product-service:
+    container_name: product-service
+    build:
+      context: ../kiosk-product-service
+    ports:
+      - "8085:8080"
+    networks:
+      - kiosk-network
+    depends_on:
+      - database
   database:
     container_name: database
     image: postgres:15.4-alpine3.18
