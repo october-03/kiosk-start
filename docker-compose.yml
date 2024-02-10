@@ -9,8 +9,6 @@ services:
       - "8080:8080"
     networks:
       - kiosk-network
-    depends_on:
-      - user-service
   user-service:
     container_name: user-service
     build:
